@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ItemCard = ({ product }) => {
   return (
     <div className="group relative">
@@ -11,10 +13,10 @@ const ItemCard = ({ product }) => {
       <div className="mt-4 flex justify-between">
         <div>
           <h3 className="text-sm text-gray-700">
-            <a href={product.href}>
+            <Link to={product.href}>
               <span aria-hidden="true" className="absolute inset-0" />
               {product.name}
-            </a>
+            </Link>
           </h3>
           <p className="mt-1 text-sm text-gray-500">{product.color}</p>
         </div>

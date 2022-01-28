@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   return (
     <div className="relative bg-white overflow-hidden">
@@ -80,12 +82,12 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <a
-                href="#"
+              <Link
+                to="/collections"
                 className="inline-block text-center bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700"
               >
                 Shop Collection
-              </a>
+              </Link>
             </div>
           </div>
         </div>
