@@ -21,7 +21,7 @@ const Collections = () => {
 
   useEffect(() => {
     getAll();
-  }, [items]);
+  },[])
 
   return (
     <>

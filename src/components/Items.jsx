@@ -19,7 +19,7 @@ const Items = () => {
 
   useEffect(() => {
     getAll();
-  },[items])
+  },[])
 
   return (
     <div className="bg-white">
