@@ -116,26 +116,26 @@ const Footer = () => {
           </div>
           <div className="">
             <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">
-              Products
+              Find me on
             </h6>
             <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Angular
+              <a href="https://github.com/aashishpanthi" className="text-gray-600">
+                GitHub
               </a>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                React
+              <a href="https://hashnode.com/@aashishpanthi" className="text-gray-600">
+                Hashnode
               </a>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Vue
+              <a href="https://blogs.aashish-panthi.com.np" className="text-gray-600">
+                Blogs
               </a>
             </p>
             <p>
-              <a href="#!" className="text-gray-600">
-                Laravel
+              <a href="https://aashishpanthi.info.np" className="text-gray-600">
+                Website
               </a>
             </p>
           </div>
@@ -154,8 +154,8 @@ const Footer = () => {
               </Link>
             </p>
             <p className="mb-4">
-              <Link to="/services" className="text-gray-600">
-                Services
+              <Link to="/collections" className="text-gray-600">
+                Collections
               </Link>
             </p>
             <p>

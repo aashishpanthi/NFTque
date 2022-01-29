@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/collections" element={<Collections />} />
           <Route exact path="/mint" element={<MintNFT />} />
-          <Route exact path="/product/:name" element={<Product />} />
+          <Route exact path="/product/:id" element={<Product />} />
           <Route
             exact
             path="/"
