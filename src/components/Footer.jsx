@@ -1,4 +1,6 @@
-//create footer component
+import { Link } from "react-router-dom";
+
+
 const Footer = () => {
   return (
     <footer className="text-center lg:text-left bg-gray-100 text-gray-600">
@@ -142,24 +144,24 @@ const Footer = () => {
               Useful links
             </h6>
             <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Pricing
-              </a>
+              <Link to="/" className="text-gray-600">
+                Home
+              </Link>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Settings
-              </a>
+              <Link to="/about" className="text-gray-600">
+                About
+              </Link>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-gray-600">
-                Orders
-              </a>
+              <Link to="/services" className="text-gray-600">
+                Services
+              </Link>
             </p>
             <p>
-              <a href="#!" className="text-gray-600">
-                Help
-              </a>
+              <Link to="/contact" className="text-gray-600">
+                Contact
+              </Link>
             </p>
           </div>
           <div className="">
@@ -242,7 +244,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center p-6 bg-gray-200">
-        <span>© 2021 Copyright: </span>
+        <span>© 2022 Copyright: </span>
         <a className="text-gray-600 font-semibold" href="/">
           NFTque
         </a>

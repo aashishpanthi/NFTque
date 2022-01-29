@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Ready = ({ MetaMaskAuth }) => {
+const Ready = ({ Connection }) => {
   return (
     <div className="bg-gray-50">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
@@ -12,7 +12,7 @@ const Ready = ({ MetaMaskAuth }) => {
         </h2>
         <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
           <div className="inline-flex rounded-md shadow">
-            <MetaMaskAuth onAddressChanged={(address) => {}} />
+            <Connection />
           </div>
           <div className="ml-3 inline-flex rounded-md shadow">
             <Link

@@ -4,14 +4,14 @@ import HeroSection from "../components/HeroSection";
 import Items from "../components/Items";
 import Ready from "../components/Ready";
 
-const Home = ({ MetaMaskAuth }) => {
+const Home = ({ Connection }) => {
 
   return (
     <>
       <HeroSection />
       <About />
       <Items />
-      <Ready MetaMaskAuth={MetaMaskAuth} />
+      <Ready Connection={Connection} />
       <Footer />
     </>
   );

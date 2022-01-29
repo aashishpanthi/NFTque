@@ -7,7 +7,7 @@ const Collections = () => {
     {
       id: 1,
       name: "Basic Tee",
-      href: "#",
+      href: "/product/1",
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
       imageAlt: "Front of men's Basic Tee in black.",
@@ -17,7 +17,7 @@ const Collections = () => {
     {
       id: 2,
       name: "Basic Tee",
-      href: "#",
+      href: "/product/2",
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
       imageAlt: "Front of men's Basic Tee in black.",
@@ -27,7 +27,7 @@ const Collections = () => {
     {
       id: 3,
       name: "Basic Tee",
-      href: "#",
+      href: "/product/3",
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
       imageAlt: "Front of men's Basic Tee in black.",

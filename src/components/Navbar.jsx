@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import Layout from "./wallets/Layout";
 
-const Navbar = ({ MetaMaskAuth }) => {
+const Navbar = ({ Connection }) => {
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -10,7 +11,8 @@ const Navbar = ({ MetaMaskAuth }) => {
           </span>
         </Link>
         <div className="flex md:order-2">
-        <MetaMaskAuth onAddressChanged={address => {}}/>
+        {/* <Connection /> */}
+        <Layout />
           <button
             data-collapse-toggle="mobile-menu-4"
             type="button"
