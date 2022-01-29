@@ -3,8 +3,9 @@ import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import Items from "../components/Items";
 import Ready from "../components/Ready";
+import Connection from "../components/wallets/Connection";
 
-const Home = ({ Connection }) => {
+const Home = () => {
 
   return (
     <>

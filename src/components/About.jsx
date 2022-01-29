@@ -2,10 +2,16 @@ import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, CurrencyDollarIcon } f
 
 const features = [
   {
-    name: 'Competitive exchange rates',
+    name: 'Upload your NFTS',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Upload you art on our digital marketplace easily. And explore tens of NFTs freely',
     icon: GlobeAltIcon,
+  },
+  {
+    name: 'Custom page',
+    description:
+      'Get your own specific page for all your owned NFTs. You can view and add new NFTs.',
+    icon: AnnotationIcon,
   },
   {
     name: 'No hidden fees',
@@ -18,12 +24,6 @@ const features = [
     description:
       'With the click of a button, you can transfer your digital assets to another user. It is as easy and fast as that.',
     icon: LightningBoltIcon,
-  },
-  {
-    name: 'Mobile notifications',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: AnnotationIcon,
   },
 ]
 

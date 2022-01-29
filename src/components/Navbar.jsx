@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Layout from "./wallets/Layout";
 
-const Navbar = ({ Connection }) => {
+const Navbar = () => {
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -11,8 +12,7 @@ const Navbar = ({ Connection }) => {
           </span>
         </Link>
         <div className="flex md:order-2">
-        {/* <Connection /> */}
-        <Layout />
+          <Layout />
           <button
             data-collapse-toggle="mobile-menu-4"
             type="button"
@@ -63,6 +63,12 @@ const Navbar = ({ Connection }) => {
             </li>
             <li className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
               <Link to="/contact">Contact</Link>
+            </li>
+            <li className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+              <Link to="/mint">Mint your NFT</Link>
+            </li>
+            <li className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+              <Link to="/mynfts">Your Collections</Link>
             </li>
           </ul>
         </div>

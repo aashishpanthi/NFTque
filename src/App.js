@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import PageNotFound from "./pages/PageNotFound";
-import Connection from "./components/wallets/Connection";
 import Contact from "./pages/Contact";
 import Collections from "./pages/Collections";
 import Product from "./pages/Product";
@@ -26,7 +25,7 @@ function App() {
       supportedChainIds={supportedChainIds}
     >
       <Router>
-        <Navbar Connection={Connection} />
+        <Navbar />
         <Routes>
           <Route exact path="/about" element={<About />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
@@ -38,7 +37,7 @@ function App() {
           <Route
             exact
             path="/"
-            element={<Home Connection={Connection} />}
+            element={<Home />}
           />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
