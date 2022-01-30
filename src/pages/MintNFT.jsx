@@ -2,6 +2,9 @@
 import { useWeb3 } from "@3rdweb/hooks";
 import { ThirdwebSDK } from "@3rdweb/sdk";
 import { useState } from "react";
+import swal from "@sweetalert/with-react";
+import ReactLoading from 'react-loading';
+
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const MintNFT = () => {
@@ -9,42 +12,57 @@ const MintNFT = () => {
   const [description, setDescription] = useState("");
   const [imageName, setImageName] = useState("");
   const [image, setImage] = useState(null);
+  const [value, setValue] = useState("");
+  const [key, setKey] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleImage = (e) => {
     const file = e.target.files[0];
     setImageName(file.name);
     setImage(file);
-    // const reader = new FileReader();
-    // reader.readAsArrayBuffer(file);
-    // reader.onloadend = () => {
-    //   setImage(Buffer(reader.result));
-    // };
+  };
+
+  const handleKey = (e) => {
+    setKey(e.target.value);
+  };
+
+  const handleValue = (e) => {
+    setValue(e.target.value);
   };
 
   const { address, provider } = useWeb3();
 
-  const mint = async () => {
+  const mint = async (properties) => {
     const sdk = new ThirdwebSDK(provider?.getSigner());
     const module = sdk.getNFTModule(
       process.env.REACT_APP_NFT_SMART_CONTRACT_ADDRESS
     );
+
+    setIsSubmitted(true);
 
     try {
       await module.mint({
         name,
         description,
         image,
-        properties: {},
+        properties,
       });
+
+      swal("Process completed!", "You minted your NFT!", "success");
+      setIsSubmitted(false);
+      
     } catch (err) {
       console.log(err);
+      swal("Process failed!", err.message, "error");
+      setIsSubmitted(false);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, description, image);
-    await mint();
+    const properties = { [key]: value };
+    console.log(name, description, image, properties);
+    await mint(properties);
   };
 
   if (!address) {
@@ -53,6 +71,7 @@ const MintNFT = () => {
 
   return (
     <>
+    {isSubmitted && (<ReactLoading className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" type="spin" color="#00BFFF" height={window.innerHeight/4} width={window.innerWidth/4} />) }
       <div>
         <div className="md:grid md:grid-cols-3 md:gap-6 px-5 my-10">
           <div className="md:col-span-1">
@@ -67,6 +86,7 @@ const MintNFT = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
+            <fieldset disabled={isSubmitted ? ("disabled") : ("")}>
             <form action="#" method="POST" onSubmit={handleSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -112,7 +132,7 @@ const MintNFT = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="file-upload" className="block text-sm font-medium text-gray-700">
                       Upload your NFT
                     </label>
                     <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -159,23 +179,40 @@ const MintNFT = () => {
                     </div>
                   </div>
 
-                  {/* <div className="col-span-6">
-                    <label
-                      htmlFor="properties"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Properties
-                    </label>
-                    <input
-                      type="text"
-                      name="properties"
-                      id="properties"
-                      autoComplete="properties"
-                      onChange={(e) => setProperties(e.target.value)}
-                      value={properties.value}
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    />
-                  </div> */}
+                  <div className="col-span-6 grid grid-cols-2 justify-between">
+                    <div className="grid grid-cols-1 px-2">
+                      <label
+                        htmlFor="key"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Key
+                      </label>
+                      <input
+                        type="text"
+                        name="key"
+                        id="key"
+                        onChange={handleKey}
+                        value={key}
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 px-2">
+                      <label
+                        htmlFor="value"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Value
+                      </label>
+                      <input
+                        type="text"
+                        name="value"
+                        id="value"
+                        onChange={handleValue}
+                        value={value}
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
@@ -187,6 +224,7 @@ const MintNFT = () => {
                 </div>
               </div>
             </form>
+            </fieldset>
           </div>
         </div>
       </div>
