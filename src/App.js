@@ -11,6 +11,7 @@ import Product from "./pages/Product";
 import MintNFT from "./pages/MintNFT";
 import { ThirdwebProvider } from "@3rdweb/react";
 import MyNFTs from "./pages/MyNFTs";
+import MyNFT from "./pages/MyNFT";
 
 function App() {
   const supportedChainIds = [4];
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/collections" element={<Collections />} />
           <Route exact path="/mint" element={<MintNFT />} />
           <Route exact path="/mynfts" element={<MyNFTs />} />
+          <Route exact path="/mynfts/:id" element={<MyNFT />} />
           <Route exact path="/product/:id" element={<Product />} />
           <Route
             exact

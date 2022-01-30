@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import { ThirdwebSDK } from "@3rdweb/sdk";
 import { useWeb3 } from "@3rdweb/hooks";
-import { NFTModule, NFTMetadataOwner } from "@3rdweb/sdk";
-import { ethers } from "ethers";
 import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 
@@ -25,8 +23,6 @@ const Product = () => {
       console.log(error);
     }
   };
-
-  // const { displayValue } = product.buyoutCurrencyValuePerToken;
 
   useEffect(() => {
     getItem();
@@ -79,22 +75,29 @@ const Product = () => {
                   </div>
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">
-                      Currency{" "}
+                      Currency
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {products[productId].buyoutCurrencyValuePerToken.name}
                     </dd>
                   </div>
                   <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Price{" "}
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <dt className="text-sm font-medium text-gray-500">Price</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 flex">
                       {
                         products[productId].buyoutCurrencyValuePerToken
                           .displayValue
-                      }{" "}
-                      {products[productId].buyoutCurrencyValuePerToken.name}
+                      }
+                      {products[productId].buyoutCurrencyValuePerToken.name ==
+                        "Ether" ? (
+                        <svg
+                          className="w-5 h-5 fill-black"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M7.963 11.98l-4.91-2.9 4.91 6.92 4.913-6.92-4.914 2.9zM8.037 0l-4.91 8.148 4.91 2.903 4.91-2.9-4.91-8.151z"></path>
+                        </svg>
+                      ):(products[productId].buyoutCurrencyValuePerToken.name)}
                     </dd>
                   </div>
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -104,6 +107,13 @@ const Product = () => {
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {products[productId].asset.description}
                     </dd>
+                  </div>
+                  <div className="bg-gray-50 px-4 py-5 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      <button className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Buy now
+                      </button>
+                    </dt>
                   </div>
                 </dl>
               </div>

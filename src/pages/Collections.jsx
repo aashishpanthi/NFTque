@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import ItemCard from "../components/ItemCard";
 import { useWeb3 } from "@3rdweb/hooks";
 import { ThirdwebSDK } from "@3rdweb/sdk";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Loader from "../components/Loader";
 
 const Collections = () => {
@@ -11,7 +11,11 @@ const Collections = () => {
   const { provider } = useWeb3();
 
   const getAll = async () => {
-    const sdk = new ThirdwebSDK(provider);
+    // if(provider){
+      const sdk = new ThirdwebSDK(provider);
+    // }else{
+    //   const sdk = new ThirdwebSDK();
+    // }
     const module = sdk.getMarketplaceModule(
       process.env.REACT_APP_MARKETPLACE_ADDRESS
     );
