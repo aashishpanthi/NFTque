@@ -21,6 +21,7 @@ const Collections = () => {
     );
     const allitems = await module.getAllListings();
     setItems(allitems);
+    console.log(allitems)
   };
 
   useEffect(() => {
