@@ -47,7 +47,7 @@ const Product = () => {
 
     try {
       const allitems = await module.getAllListings();
-      setProduct(allitems.find((item) => item.id == productId));
+      setProduct(allitems.find((item) => item.id === productId));
       console.log(allitems);
     } catch (error) {
       console.log(error);
@@ -124,7 +124,7 @@ const Product = () => {
                     <dt className="text-sm font-medium text-gray-500">Price</dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 flex">
                       {product.buyoutCurrencyValuePerToken.displayValue}
-                      {product.buyoutCurrencyValuePerToken.name == "Ether" ? (
+                      {product.buyoutCurrencyValuePerToken.name === "Ether" ? (
                         <svg
                           className="w-5 h-5 fill-black"
                           xmlns="http://www.w3.org/2000/svg"

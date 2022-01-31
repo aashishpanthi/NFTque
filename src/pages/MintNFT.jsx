@@ -1,4 +1,3 @@
-// Importing libraries
 import { useWeb3 } from "@3rdweb/hooks";
 import { ThirdwebSDK } from "@3rdweb/sdk";
 import { useState } from "react";
