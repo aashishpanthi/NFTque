@@ -51,7 +51,6 @@ const MintNFT = () => {
       setIsSubmitted(false);
       
     } catch (err) {
-      console.log(err);
       swal("Process failed!", err.message, "error");
       setIsSubmitted(false);
     }
@@ -60,7 +59,6 @@ const MintNFT = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const properties = { [key]: value };
-    console.log(name, description, image, properties);
     await mint(properties);
   };
 

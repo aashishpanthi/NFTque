@@ -14,7 +14,7 @@ const Product = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { provider, address } = useWeb3();
 
-  const buyNFT = async() => {
+  const buyNFT = async () => {
     const sdk = new ThirdwebSDK(provider?.getSigner());
     const module = sdk.getMarketplaceModule(
       process.env.REACT_APP_MARKETPLACE_ADDRESS
@@ -24,19 +24,15 @@ const Product = () => {
     const quantityDesired = 1;
 
     setIsSubmitted(true);
-      try {
-        await module.buyoutDirectListing({ listingId, quantityDesired });
+    try {
+      await module.buyoutDirectListing({ listingId, quantityDesired });
 
-        swal(
-          "Process completed!",
-          "Now you own this NFT!",
-          "success"
-        );
-        setIsSubmitted(false);
-      } catch (error) {
-        swal("Process failed!", error.message, "error");
-        setIsSubmitted(false);
-      }
+      swal("Process completed!", "Now you own this NFT!", "success");
+      setIsSubmitted(false);
+    } catch (error) {
+      swal("Process failed!", error.message, "error");
+      setIsSubmitted(false);
+    }
   };
 
   const getItem = async () => {
@@ -48,7 +44,6 @@ const Product = () => {
     try {
       const allitems = await module.getAllListings();
       setProduct(allitems.find((item) => item.id === productId));
-      console.log(allitems);
     } catch (error) {
       console.log(error);
     }
@@ -56,12 +51,19 @@ const Product = () => {
 
   useEffect(() => {
     getItem();
-  }, []);
+  }, [address]);
 
+  if (!address) {
+    return (
+      <h1 className="my-10 text-center text-red-500">
+        Connect your wallet to see the collections
+      </h1>
+    );
+  }
 
   return (
     <>
-    {isSubmitted && (
+      {isSubmitted && (
         <ReactLoading
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           type="spin"

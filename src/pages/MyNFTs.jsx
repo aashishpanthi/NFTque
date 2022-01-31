@@ -23,7 +23,7 @@ const MyNFTs = () => {
 
   useEffect(() => {
     getNFTs();
-  }, []);
+  }, [address]);
 
   if (!address) {
     return <div>Connect your wallet first</div>;

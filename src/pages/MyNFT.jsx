@@ -55,11 +55,10 @@ const MyNFT = () => {
 
   useEffect(() => {
     getNFT();
-  }, []);
+  }, [address]);
 
   const listNFT = async (e) => {
     e.preventDefault();
-    console.log(price);
 
     const createAuctionListing = async () => {
       const listing = {
@@ -71,7 +70,6 @@ const MyNFT = () => {
         currencyContractAddress: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
         buyoutPricePerToken: ethers.utils.parseEther(price),
       };
-      console.log(listing);
 
       setIsSubmitted(true);
       try {

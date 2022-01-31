@@ -7,19 +7,20 @@ import Loader from "./Loader";
 
 const Items = () => {
   const [items, setItems] = useState([]);
-  const { provider } = useWeb3();
+  const { provider, address } = useWeb3();
 
-  
   const getAll = async () => {
     const sdk = new ThirdwebSDK(provider);
-    const module = sdk.getMarketplaceModule(process.env.REACT_APP_MARKETPLACE_ADDRESS);
-    const allitems = await module.getAllListings()
+    const module = sdk.getMarketplaceModule(
+      process.env.REACT_APP_MARKETPLACE_ADDRESS
+    );
+    const allitems = await module.getAllListings();
     setItems(allitems);
   };
 
   useEffect(() => {
     getAll();
-  },[])
+  }, [address]);
 
   return (
     <div className="bg-white">
@@ -32,11 +33,21 @@ const Items = () => {
             View more ➡️
           </Link>
         </div>
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {(items.length === 0) ? (<Loader />):(items.map((product) => (
-            <ItemCard key={product.id} product={product} />
-          )))}
-        </div>
+        {address ? (
+          <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {items.length === 0 ? (
+              <Loader />
+            ) : (
+              items.map((product) => (
+                <ItemCard key={product.id} product={product} />
+              ))
+            )}
+          </div>
+        ) : (
+          <h1 className="my-10 text-center text-red-500">
+            Connect your wallet to see the collections
+          </h1>
+        )}
       </div>
     </div>
   );
