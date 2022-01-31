@@ -12,7 +12,7 @@ import { ethers } from "ethers";
 const MyNFT = () => {
   const { id: productId } = useParams();
   const { address, provider } = useWeb3();
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState("");
   const [Nft, setNft] = useState({});
   const [hasNFt, setHasNft] = useState(true);
   const [shouldList, setShouldList] = useState(false);
@@ -190,6 +190,7 @@ const MyNFT = () => {
                               value={price}
                               id="price"
                               type="number"
+                              placeholder="min 0"
                               min={0}
                               step="any"
                               required="true"
