@@ -15,7 +15,7 @@ const Items = () => {
       process.env.REACT_APP_MARKETPLACE_ADDRESS
     );
     const allitems = await module.getAllListings();
-    setItems(allitems);
+    setItems(allitems.slice(0,4));
   };
 
   useEffect(() => {
