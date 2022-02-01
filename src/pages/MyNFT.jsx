@@ -1,7 +1,7 @@
 import { useWeb3 } from "@3rdweb/hooks";
 import { useEffect, useState } from "react";
 import { ThirdwebSDK } from "@3rdweb/sdk";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
@@ -18,31 +18,50 @@ const MyNFT = () => {
   const [shouldList, setShouldList] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isListed, setIsListed] = useState(false);
+  const navigate = useNavigate();
 
   const sdk = new ThirdwebSDK(provider?.getSigner());
 
   const marketplaceAddress = process.env.REACT_APP_MARKETPLACE_ADDRESS;
   const marketplace = sdk.getMarketplaceModule(marketplaceAddress);
   const nftCollectionAddress = process.env.REACT_APP_NFT_SMART_CONTRACT_ADDRESS;
+  const module = sdk.getNFTModule(nftCollectionAddress);
+
+  const BurnNft = async () => {
+    setIsSubmitted(true);
+    try {
+      await module.burn(Nft.id);
+
+      swal("Process completed!", "Your NFT is burnt!", "success")
+        .then((value) => {
+          navigate("/mynfts");
+          setIsSubmitted(false);
+        })
+        .catch((error) => {
+          navigate("/mynfts");
+          setIsSubmitted(false);
+        });
+    } catch (error) {
+      swal("Process failed!", error.message, "error");
+      setIsSubmitted(false);
+    }
+  };
 
   const getNFT = async () => {
-    const module = sdk.getNFTModule(nftCollectionAddress);
-
     try {
       const nfts = await module.getOwned(address);
 
       if (nfts.length === 0) {
         setHasNft(false);
       } else {
-        
         const allitems = await marketplace.getAllListings();
         const nft = nfts.find((nft) => nft.id === productId);
         setNft(nft);
 
-        const NFTIMAGE =  nft.image.split("ipfs/")[1];
+        const NFTIMAGE = nft.image.split("ipfs/")[1];
 
         allitems.forEach((item) => {
-          const ITEMIMAGE =  item.asset.image.split("ipfs://")[1];
+          const ITEMIMAGE = item.asset.image.split("ipfs://")[1];
           if (NFTIMAGE === ITEMIMAGE) {
             setIsListed(true);
           }
@@ -79,8 +98,15 @@ const MyNFT = () => {
           "Process completed!",
           "Your NFT is listed in marketplace!",
           "success"
-        );
-        setIsSubmitted(false);
+        )
+          .then((value) => {
+            navigate("/collections");
+            setIsSubmitted(false);
+          })
+          .catch((error) => {
+            navigate("/collections");
+            setIsSubmitted(false);
+          });
       } catch (error) {
         swal("Process failed!", error.message, "error");
         setIsSubmitted(false);
@@ -216,19 +242,21 @@ const MyNFT = () => {
                       </form>
                     ) : (
                       <div className="bg-gray-50 px-4 py-5 sm:gap-4 sm:px-6">
-                        <dt className="text-sm font-medium text-gray-500">
+                        <dt className="text-sm font-medium text-gray-500 flex justify-between">
                           <button
-                            onClick={() => setShouldList(true)}
                             disabled={isListed ? "disabled" : ""}
-                            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            onClick={() => setShouldList(true)}
+                            className="w-2/5 text-white bg-blue-300 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                           >
                             List in marketplace
                           </button>
-                          {isListed ? (
-                            <span className="text-red-500">
-                              This NFT is already listed in the marketplace.
-                            </span>
-                          ) : ""}
+
+                          <button
+                            onClick={BurnNft}
+                            className="w-2/5 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          >
+                            Burn
+                          </button>
                         </dt>
                       </div>
                     )}

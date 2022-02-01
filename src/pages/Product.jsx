@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import swal from "@sweetalert/with-react";
 import ReactLoading from "react-loading";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const { id: productId } = useParams();
@@ -13,6 +14,7 @@ const Product = () => {
   const [isBuying, setIsBuying] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { provider, address } = useWeb3();
+  const navigate = useNavigate();
 
   const buyNFT = async () => {
     const sdk = new ThirdwebSDK(provider?.getSigner());
@@ -27,8 +29,14 @@ const Product = () => {
     try {
       await module.buyoutDirectListing({ listingId, quantityDesired });
 
-      swal("Process completed!", "Now you own this NFT!", "success");
-      setIsSubmitted(false);
+      swal("Process completed!", "Now you own this NFT!", "success")
+        .then((value) => {
+        navigate("/mynfts");
+        setIsSubmitted(false);
+      }).catch((error) => {
+        navigate("/mynfts");
+        setIsSubmitted(false);
+      });
     } catch (error) {
       swal("Process failed!", error.message, "error");
       setIsSubmitted(false);

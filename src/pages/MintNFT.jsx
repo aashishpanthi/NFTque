@@ -1,6 +1,7 @@
 import { useWeb3 } from "@3rdweb/hooks";
 import { ThirdwebSDK } from "@3rdweb/sdk";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import swal from "@sweetalert/with-react";
 import ReactLoading from 'react-loading';
 
@@ -14,6 +15,7 @@ const MintNFT = () => {
   const [value, setValue] = useState("");
   const [key, setKey] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -47,9 +49,14 @@ const MintNFT = () => {
         properties,
       });
 
-      swal("Process completed!", "You minted your NFT!", "success");
-      setIsSubmitted(false);
-      
+      swal("Process completed!", "You minted your NFT!", "success")
+        .then((value) => {
+        navigate("/mynfts");
+        setIsSubmitted(false);
+      }).catch((error) => {
+        navigate("/mynfts");
+        setIsSubmitted(false);
+      });      
     } catch (err) {
       swal("Process failed!", err.message, "error");
       setIsSubmitted(false);
