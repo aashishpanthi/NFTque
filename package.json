@@ -5,7 +5,7 @@
   "dependencies": {
     "@3rdweb/hooks": "^1.8.0",
     "@3rdweb/react": "^1.8.1",
-    "@3rdweb/sdk": "^1.37.0",
+    "@3rdweb/sdk": "^1.39.3",
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
     "@sweetalert/with-react": "^0.1.1",
@@ -31,8 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy" : "npm run build",
-    "deploy":"gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
